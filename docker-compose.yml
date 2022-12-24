@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  jaga-api:
+    restart: always
+    build:
+      context: .
+    links:
+      - jaga-mongo
+      - jaga-redis
+    ports:
+      - 8001:8080
+
+  jaga-mongo:
+    image: mongo:4.4
+    restart: always
+    volumes:
+      - ./data/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jagaapp
+      MONGO_INITDB_ROOT_PASSWORD: 086a54047267e2fbda59790815a66bab9b462019
+      
+  jaga-mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: jagaapp
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 086a54047267e2fbda59790815a66bab9b462019
+      ME_CONFIG_MONGODB_SERVER: jaga-mongo
+
+  jaga-redis:
+    image: redis:7.0.3-alpine
+    command: redis-server --requirepass 14607589d7cac28b00d3f9b2e408173de32de727
+    restart: always
+    volumes:
+      - ./data/redis:/data
+    depends_on:
+      - jaga-mongo

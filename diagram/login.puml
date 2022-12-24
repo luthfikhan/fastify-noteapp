@@ -1,0 +1,15 @@
+@startuml Login flow
+
+Client -> Backend: Login
+Backend -> db: check user
+alt succes
+    db -> Backend: ok
+    Backend -> Backend: create token
+    Backend -> Client: login successful
+    Client -> Client: store token
+  else wrong email / password
+    db -> Backend: not ok
+    Backend -> Client: login failed
+  end
+
+@enduml

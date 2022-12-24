@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  jaga-mongo:
+    image: mongo:4.4
+    restart: always
+    volumes:
+      - ./data/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jagaapp
+      MONGO_INITDB_ROOT_PASSWORD: xRyNeqhuMP
+    ports:
+      - 27017:27017
+
+  jaga-mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: jagaapp
+      ME_CONFIG_MONGODB_ADMINPASSWORD: xRyNeqhuMP
+      ME_CONFIG_MONGODB_SERVER: jaga-mongo
+  jaga-redis:
+    image: redis:7.0.3-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./data/redis:/data
+    depends_on:
+      - jaga-mongo

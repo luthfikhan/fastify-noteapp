@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <title>Kode OTP Verifikasi</title>
+    <style>
+      body {
+        font-size: 16px;
+        font-family: "Poppins";
+        background-color: white;
+        padding: 32px 16px 16px;
+        color: #4e5764;
+      }
+
+      .wrapper {
+        max-width: 550px;
+      }
+
+      .otpWrapper {
+        display: flex;
+        justify-content: center;
+        margin: 24px 0;
+      }
+
+      .otpContainer {
+        border: 1px solid #cccfd3;
+        border-radius: 16px;
+        padding: 12px 24px;
+        color: #000;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 24px 0;
+      }
+
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <span id="title">Selamat datang di Jaga Notes</span>
+      <p>Masukkan kode OTP dibawah pada halaman verifikasi.</p>
+      <div class="otpWrapper">
+        <div class="otpContainer" id="otpValue">{{otp}}</div>
+      </div>
+      <p>
+        Kode OTP hanya berlaku selama <span id="otpDuration">5</span> menit.
+        Jaga kerahasian data Anda, dengan tidak membagikan informasi kode
+        verifikasi kepada orang lain.
+      </p>
+      <p>Abaikan jika Anda tidak melakukan permintaan kode ini.</p>
+      <p style="margin-bottom: 12px">Terima Kasih.</p>
+      <!-- Telkomsel Logo -->
+      <img
+        class="logo"
+        src="https://profile.filab.id/_app/immutable/assets/logo-201a286e.png"
+      />
+    </div>
+  </body>
+</html>
